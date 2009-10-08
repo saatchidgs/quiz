@@ -12,11 +12,13 @@ $scores = "readWrite/scores.xml";
 $raw_xml = file_get_contents("php://input");
 // $data = new edit();
 print $raw_xml;
-// print $edit;
+print $edit;
 
 // print_r($data);
 
-
+$fp = fopen($scores, "w");
+fwrite($fp, $raw_xml);
+fclose($fp);
 
 
 
@@ -26,21 +28,11 @@ print $raw_xml;
 	// mysql_query("INSERT INTO `data` VALUES ('$name', '$email', '$location')");
 	// Print "Your information has been successfully added to the database.";
 
-	$xml = simplexml_load_string($raw_xml);
-	// var_dump($xml);
-
-
 if ($raw_xml) {
-	
-	$fp = fopen($scores, "w");
-	fwrite($fp, $raw_xml);
-	fclose($fp);
-	
-	
 	mysql_connect("$db_host", "$db_user", "$db_pass") or die('MySQl Connection Error:'.mysql_error());
 	mysql_select_db("$db_db") or die('MySQL Error: Cannot select table');
 		
-	mysql_query("INSERT INTO `edit` (scores) VALUES ('$xml')") or die('MySQl Connection Error:'.mysql_error()); 
+	mysql_query("INSERT INTO `edit` (scores) VALUES ('$raw_xml')") or die('MySQl Connection Error:'.mysql_error()); 
 	// Print "Your information has been successfully added to the database.";
 	
 	
@@ -51,12 +43,12 @@ if ($raw_xml) {
 	// echo $row['id']. " - ". $row['scores'];
 	
 	
-	// $arst = mysql_query('select * from edit');
-	// 
-	// echo $arst;
-	// echo $msg;
-	// echo $num;
-	// echo $raw_xml;
+	$arst = mysql_query('select * from edit');
+	
+	echo $arst;
+	echo $msg;
+	echo $num;
+	echo $raw_xml;
 }
 
 ?>
@@ -66,3 +58,7 @@ if ($raw_xml) {
 	<embed src="simple_editor.swf" width="320" height="240" type="application/x-shockwave-flash"></embed> 
 </object>
 
+<?
+print "arst".$raw_xml;
+print $edit;
+?>

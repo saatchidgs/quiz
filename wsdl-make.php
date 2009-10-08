@@ -1,6 +1,6 @@
 <?
 require_once 'WSDLInterpreter.php';
-$myWSDLlocation = 'quiz.wsdl';
+$myWSDLlocation = 'readWrite/output.wsdl';
 $wsdlInterpreter = new WSDLInterpreter($myWSDLlocation);
 $wsdlInterpreter->savePHP('.');
 ?>
