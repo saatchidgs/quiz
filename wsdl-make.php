@@ -1,6 +1,6 @@
 <?
 require_once 'WSDLInterpreter.php';
-$myWSDLlocation = 'NewAssetDownloadService.wsdl';
+$myWSDLlocation = 'quiz.wsdl';
 $wsdlInterpreter = new WSDLInterpreter($myWSDLlocation);
 $wsdlInterpreter->savePHP('.');
 ?>
